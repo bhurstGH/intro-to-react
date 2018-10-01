@@ -15,9 +15,13 @@
           return (
             <div>
              <h1>Hello World!</h1>
+             <SimpleComponent />
             </div>
           );
         }
+      }
+      const SimpleComponent = () => {
+        return <p>This is a Simple Component as defined by Tania Rascia in her <a href="https://www.taniarascia.com/getting-started-with-react/">Getting Started with React</a> tutorial. She defines this as a function and a component that doesn't use the <code>class</code> keyword. These are officially known as functional or stateless components. They cannot have state, unlike class components.</p>;
       }
       ReactDOM.render(
         <Greeting />, document.getElementById('app')
