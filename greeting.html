@@ -14,17 +14,44 @@
         render() {
           return (
             <div>
-             <h1>Hello World!</h1>
+             <h1>Hello {this.props.name}!</h1>
              <SimpleComponent />
+             <BorderButton />
             </div>
           );
         }
       }
+
       const SimpleComponent = () => {
         return <p>This is a Simple Component as defined by Tania Rascia in her <a href="https://www.taniarascia.com/getting-started-with-react/">Getting Started with React</a> tutorial. She defines this as a function and a component that doesn't use the <code>class</code> keyword. These are officially known as functional or stateless components. They cannot have state, unlike class components.</p>;
       }
+
+      class BorderButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            borderToggleState: false,
+          };
+          this.borderClick = this.borderClick.bind(this);
+        }
+
+        borderClick() {
+          this.setState(labelState => ({
+            borderToggleState: !labelState.borderToggleState
+          }));
+        }
+        render() {
+          const borderToggle = this.state.borderToggleState ? {border: '5px solid blue'} : {border: '5px solid black'};
+          return (
+            <button style={borderToggle} onClick={this.borderClick}>
+              {this.state.borderToggleState ? 'Blue Border' : 'Black Border'}
+            </button>
+          );
+        }
+      }
       ReactDOM.render(
-        <Greeting />, document.getElementById('app')
+        <Greeting name={prompt('Enter your name:')}/>,
+        document.getElementById('app')
       );
     </script>
   </body>
